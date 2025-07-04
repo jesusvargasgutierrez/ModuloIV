@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ModuloIVV2</string>
+    <string name="main_activity_btn_iniciar">Iniciar</string>
+    <string name="main_activity_title">Inicio de sesión</string>
+</resources>
