@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ModuloIVV2"
         tools:targetApi="31">
         <activity
+            android:name=".ContryDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActivityAcerca"
             android:exported="false" />
         <activity
@@ -20,12 +23,6 @@
             android:exported="false" />
         <activity
             android:name=".ActivityCountry"
-            android:exported="false" />
-        <activity
-            android:name=".ActivityHome"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ActivityHome"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"></activity>
     </application>
 
 </manifest>

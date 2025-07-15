@@ -17,6 +17,12 @@ class CountryAdapter(private val countriesList: List<Country>) : RecyclerView.Ad
         return CountryViewHolder(cuntryView)
     }
 
+    private var onItemClickListener: ((Country) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Country) -> Unit){
+        onItemClickListener = listener
+    }
+
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val country = countriesList[position]
         holder.bind(country)
@@ -35,6 +41,10 @@ class CountryAdapter(private val countriesList: List<Country>) : RecyclerView.Ad
             Glide.with(itemView.context)
                 .load(country.imageURL)
                 .into(imgFlag)
+
+            itemView.setOnClickListener {
+                onItemClickListener?.invoke(country)
+            }
         }
     }
 }
