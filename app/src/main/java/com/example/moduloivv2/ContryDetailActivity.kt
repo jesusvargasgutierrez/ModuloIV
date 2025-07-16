@@ -34,6 +34,30 @@ class ContryDetailActivity : AppCompatActivity() {
         val countryCode = intent.getStringExtra("country_code")
         val countryImageURL = intent.getStringExtra("country_image_url")
 
+        val txtCountryWheater : TextView = findViewById(R.id.countrywheater)
+
+        var uriwheater = "https://api.weatherapi.com/v1/current.json?key=14d5166d091e4aa6bf6173850251607&q="+countryName+"&aqi=no"
+        var client = OkHttpClient()
+        var request = okhttp3.Request.Builder()
+            .url(uriwheater)
+            .build()
+
+        client.newCall(request).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("Error wheater", e.toString())
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                response.body?.let { responseBody ->
+                    val json = JSONObject(responseBody.string())
+                    val current = json.getJSONObject("current")
+                    val condition = current.getJSONObject("condition")
+                    txtCountryWheater.text = condition.getString("text")
+                    Log.d("wheater", json.toString())
+                }
+            }
+        })
+
         /**
          * Treamos los componentes de la vista
          */
